@@ -10,3 +10,8 @@ spring:
   output:
     ansi:
       enabled: always
+
+server:
+  servlet:
+    encoding:
+      force: true
