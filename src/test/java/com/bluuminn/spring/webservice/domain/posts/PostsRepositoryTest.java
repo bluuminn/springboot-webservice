@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -43,5 +44,27 @@ class PostsRepositoryTest {
         Posts posts = postsList.get(0);
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
+    }
+
+    @DisplayName("BaseTimeEntity 등록")
+    @Test
+    void resist_BaseTimeEntity() throws Exception {
+        // given
+        LocalDateTime now = LocalDateTime.of(2023, 4, 3, 0, 0, 0);
+        postsRepository.save(Posts.builder()
+                .title("title")
+                .content("content")
+                .author("author")
+                .build());
+
+        // when
+        List<Posts> postsList = postsRepository.findAll();
+
+        // then
+        Posts posts = postsList.get(0);
+        log.info(">>>>> createdAt=" + posts.getCreatedAt() + ", updatedAt=" + posts.getUpdatedAt());
+
+        assertThat(posts.getCreatedAt()).isAfter(now);
+        assertThat(posts.getUpdatedAt()).isAfter(now);
     }
 }
