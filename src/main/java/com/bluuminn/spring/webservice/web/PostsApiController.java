@@ -16,4 +16,9 @@ public class PostsApiController {
     public Long save(@RequestBody PostsSaveRequestDto requestDto) {
         return postsService.save(requestDto);
     }
+
+    @GetMapping("/api/v1/posts/{id}")
+    public PostsResponseDto detail(@PathVariable Long id) {
+        return postsService.findById(id);
+    }
 }
