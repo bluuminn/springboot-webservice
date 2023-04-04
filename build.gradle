@@ -36,6 +36,7 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-mustache'
 
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
     runtimeOnly 'com.h2database:h2'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
