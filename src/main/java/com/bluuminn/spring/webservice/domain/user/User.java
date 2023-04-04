@@ -1,5 +1,6 @@
 package com.bluuminn.spring.webservice.domain.user;
 
+import com.bluuminn.spring.webservice.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,9 +9,8 @@ import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
-@Table(name = "users")
 @Entity
-public class User {
+public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
