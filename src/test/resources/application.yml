@@ -23,10 +23,6 @@ spring:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         format_sql: true
 
-  output:
-    ansi:
-      enabled: always
-
 server:
   servlet:
     encoding:
