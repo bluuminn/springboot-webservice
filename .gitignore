@@ -41,3 +41,7 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Projects ###
+application-oauth.yml
+blog.md
