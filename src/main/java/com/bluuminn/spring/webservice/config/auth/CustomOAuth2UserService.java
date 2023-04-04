@@ -1,6 +1,7 @@
 package com.bluuminn.spring.webservice.config.auth;
 
 import com.bluuminn.spring.webservice.config.auth.dto.OAuthAttributes;
+import com.bluuminn.spring.webservice.config.auth.dto.SessionUser;
 import com.bluuminn.spring.webservice.domain.user.User;
 import com.bluuminn.spring.webservice.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -43,7 +44,10 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     }
 
     private User saveOrUpdate(OAuthAttributes attributes) {
-        User user = userRepository.findByEmail(attributes.getEmail()).map(entity -> entity.update(attributes.getName(), attributes.getPicture())).orElse(attributes.toEntity());
+        User user = userRepository.findByEmail(
+                attributes.getEmail())
+                .map(entity -> entity.update(attributes.getName(), attributes.getPicture()))
+                .orElse(attributes.toEntity());
 
         return userRepository.save(user);
     }
