@@ -56,6 +56,10 @@ test {
     useJUnitPlatform()
 }
 
+bootJar {
+    enabled = false
+}
+
 jar {
-    enabled = false // plain jar 생성 안함
+    enabled = false
 }
