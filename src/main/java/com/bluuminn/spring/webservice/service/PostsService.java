@@ -38,15 +38,15 @@ public class PostsService {
 
     @Transactional(readOnly = true)
     public List<PostsListResponseDto> findAllDesc() {
-        return postsRepository.findAllDesc().stream()
+        return postsRepository.findByDeletedAtIsNullOrderByIdDesc().stream()
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
     }
 
     @Transactional
     public void delete(Long id) {
-        Posts posts = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
-        postsRepository.delete(posts);
+        Posts posts = postsRepository.findByIdAndDeletedAtIsNull(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
         posts.delete();
     }
 }
