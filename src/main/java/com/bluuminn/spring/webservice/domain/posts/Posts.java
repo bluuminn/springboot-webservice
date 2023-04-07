@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
@@ -23,6 +24,8 @@ public class Posts extends BaseTimeEntity {
 
     private String author;
 
+    private LocalDateTime deletedAt;
+
     @Builder
     public Posts(String title, String content, String author) {
         this.title = title;
@@ -33,5 +36,9 @@ public class Posts extends BaseTimeEntity {
     public void update(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+
+    public void delete() {
+        this.deletedAt = LocalDateTime.now();
     }
 }
